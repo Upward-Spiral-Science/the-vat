@@ -19,13 +19,13 @@ Exploratory
 3. what is the min of V in (x,y,z) direction and max?
 
 Inferential 
-
+Depends on answers above...
 
 Predictive 
 
 
 Causal 
-
+1. Does a certain protein cause certain synapse subcluster?
 
 Mechanistic 
-
+1. What mechanism causes synaptic diversion within neuronal growth?
