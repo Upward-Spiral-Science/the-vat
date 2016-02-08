@@ -20,17 +20,12 @@ Exploratory
 
 Inferential 
 Depends on answers above...
-1. Does mean protein expression vary based on location?
-2. Is there significant correlation between any features?
 
 Predictive 
-1. What is the best block model to cluster the data better? Can we use stochastic block modelling?
-2. How many classes of synapses can we identify?
-3. What features are relevant for predicting synapse type?
+What is the best block model to cluster the data better? Can we use stochastic block modelling?
 
 Causal 
 1. Does a certain protein cause certain synapse subcluster?
 
 Mechanistic 
 1. What mechanism causes synaptic diversion within neuronal growth?
-2. How do different profiles of protein expression relate to overall function?
