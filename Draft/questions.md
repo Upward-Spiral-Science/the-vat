@@ -22,7 +22,7 @@ Inferential
 Depends on answers above...
 
 Predictive 
-
+What is the best block model to cluster the data better? Can we use stochastic block modelling?
 
 Causal 
 1. Does a certain protein cause certain synapse subcluster?
