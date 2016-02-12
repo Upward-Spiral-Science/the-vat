@@ -34,3 +34,16 @@ Causal
 Mechanistic 
 1. What mechanism causes synaptic diversion within neuronal growth?
 2. How do different profiles of protein expression relate to overall function?
+
+Things to Do:
+shiny.neurodata.io
+1. dendrogram of data
+2. histogram of data - good for large datasets (LLN)
+3. average
+4. variance
+5. PCA
+6. outlier plot
+- if outliers, can convert to ranks, or robust estimators
+7. covaraiance plot, halla
+8. correlation heat map
+9. violin plot - kernel density estimators for plots
