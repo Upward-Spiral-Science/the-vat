@@ -107,14 +107,16 @@ Each of the questions required code and (for the inferential, predictive, and as
 When answering descriptive questions, we sought out values which could summarize the dataset. Our sample sizes, feature matrix sizes, and amount of obviously invalid data were chosen because they would be important in virtually any downstream task. More complicated features could have also been looked at, such as dynamic range of edge weights, or distribution of genders in each dataset as well.
 
 #### Exploratory Analysis
-Three exploratory questions were answered here: shape of features, range of locations, and histograms of location distribution. The feature correlations were computed with a standard correlation computation. Then the plot had a threshold applied to binarize the low correlations.
+Four exploratory questions were answered here: shape of features, range of locations, histograms of location distribution, and identification of clusters. The feature correlations were computed with a standard correlation computation. Then the plot had a threshold applied to binarize the low correlations.
 
 There was very limited computation or design when computing the histograms.
+
+Clusters were fit using the scikit learn implementation of mini-batch k-means for various values of k, the number of clusters. The optimal model was chosen as the model that minimized BIC. 
 
 #### Inferential Analysis
 The following figure is a simulation of the power of the KS-test with increasing n and the Wilcoxon Rank test.
 
-We also simulated the power of the likelihood ratio test statistic.
+We also simulated the power of the likelihood ratio test statistic for gaussian mixture models. 
 
 <img src="../figures/powersim.png">
 <img src="../figures/powersimgmm.png">
@@ -128,3 +130,5 @@ This simulated the accuracy of our regressors with increasing n.
 When performing any analysis that requires assumptions, it is wise to test the assumptions made. We made three types of assumptions here: samples are independent, samples are identical, and there exists a gaussian mixture model. For testing independence, we chose to look at linear dependence. We computed the covariance matrix across all samples. If a significant portion of the covariance matrix lay in the off diagonal, we could say that the samples were not linearly independent.
 
 We could also downsample and compute an independence test using RPy.
+
+The gaussian mixture model test for number of mixture components assumes, as the name suggests, that the data is a mixture of gaussians. Tests for normality of each mixture component is one way to determine if this assumption is violated. Q-Q plots of each mixture component also provides a visual indicator of deviance from normality.
