@@ -89,3 +89,42 @@ Up to this point, our analysis has made two large assummptions about our data: o
 Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. 
 
 In order to test for normality, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
+
+### Next Steps
+
+
+### Methods
+Each of the questions required code and (for the inferential, predictive, and assumption checking portions) mathematical theory. This is all explained in detail in each file, tabulated below. Here, we will discuss the methods used in each of these sections, rationalize decision made, and discuss alternatives that could have been performed instead.
+
+| Question Type | Code |
+|---------------|------|
+| Descriptive and Exploratory | [**``./exploratory_analysis_AL.ipynb``**](./exploratory_analysis_AL.ipynb) |
+| Inferential | [**``./inferential_simulation_AL.ipynb``**](./inferential_simulation_AL.ipynb) |
+| Predictive  | [**``./classificationANDregression_simulation_AL.ipynb``**](./classificationANDregression_simulation_AL.ipynb) |
+| Testing Assumptions | [**``./testing_assumptions_AL.ipynb``**](./testing_assumptions_AL.ipynb) |
+
+#### Descriptive Analysis
+When answering descriptive questions, we sought out values which could summarize the dataset. Our sample sizes, feature matrix sizes, and amount of obviously invalid data were chosen because they would be important in virtually any downstream task. More complicated features could have also been looked at, such as dynamic range of edge weights, or distribution of genders in each dataset as well.
+
+#### Exploratory Analysis
+Three exploratory questions were answered here: shape of features, range of locations, and histograms of location distribution. The feature correlations were computed with a standard correlation computation. Then the plot had a threshold applied to binarize the low correlations.
+
+There was very limited computation or design when computing the histograms.
+
+#### Inferential Analysis
+The following figure is a simulation of the power of the KS-test with increasing n and the Wilcoxon Rank test.
+
+We also simulated the power of the likelihood ratio test statistic.
+
+<img src="../figures/powersim.png">
+<img src="../figures/powersimgmm.png">
+
+#### Predictive Analysis
+This simulated the accuracy of our regressors with increasing n. 
+
+<img src="../figures/regressionsim.png">
+
+#### Testing Assumptions
+When performing any analysis that requires assumptions, it is wise to test the assumptions made. We made three types of assumptions here: samples are independent, samples are identical, and there exists a gaussian mixture model. For testing independence, we chose to look at linear dependence. We computed the covariance matrix across all samples. If a significant portion of the covariance matrix lay in the off diagonal, we could say that the samples were not linearly independent.
+
+We could also downsample and compute an independence test using RPy.
