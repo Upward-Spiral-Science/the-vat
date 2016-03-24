@@ -1,19 +1,19 @@
 ## Progress Report - March 24th, 2016
 **Table of Contents:**
-- [Overview](./progress_report.md#overview)
-- [Scientific Questioning](./progress_report.md#scientific-questioning)
-    - [Descriptive Analysis](./progress_report.md#descriptive-analysis)
-    - [Exploratory Analysis](./progress_report.md#exploratory-analysis)
-    - [Inferential Analysis](./progress_report.md#inferential-analysis)
-    - [Predictive Analysis](./progress_report.md#predictive-analysis)
-    - [Testing Assumptions](./progress_report.md#testing-assumptions)
-    - [Next Steps](./progress_report.md#next-steps)
+- [Overview](./progress_report.MD#overview)
+- [Scientific Questioning](./progress_report.MD#scientific-questioning)
+    - [Descriptive Analysis](./progress_report.MD#descriptive-analysis)
+    - [Exploratory Analysis](./progress_report.MD#exploratory-analysis)
+    - [Inferential Analysis](./progress_report.MD#inferential-analysis)
+    - [Predictive Analysis](./progress_report.MD#predictive-analysis)
+    - [Testing Assumptions](./progress_report.MD#testing-assumptions)
+    - [Next Steps](./progress_report.MD#next-steps)
 - [Methods](./progress_report.md#methods)
-    - [Decriptive Analysis](./progress_report.md#descriptive-analysis-1)
-    - [Exploratory Analysis](./progress_report.md#exploratory-analysis-1)
-    - [Inferential Analysis](./progress_report.md#inferential-analysis-1)
-    - [Predictive Analysis](./progress_report.md#predictive-analysis-1)
-    - [Testing Assumptions](./progress_report.md#testing-assumptions-1)
+    - [Decriptive Analysis](./progress_report.MD#descriptive-analysis-1)
+    - [Exploratory Analysis](./progress_report.MD#exploratory-analysis-1)
+    - [Inferential Analysis](./progress_report.MD#inferential-analysis-1)
+    - [Predictive Analysis](./progress_report.MD#predictive-analysis-1)
+    - [Testing Assumptions](./progress_report.MD#testing-assumptions-1)
 
 --------
 
