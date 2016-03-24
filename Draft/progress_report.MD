@@ -47,4 +47,45 @@ The ranges on each axis are:
 ### Exploratory Analysis
 First we looked at our feature data.
 
-<img src="../figures/corrplot.png">
+<img src="../figures/corrplot.png" width="300" height="300">
+
+We notice that there is some sort of trend within the correlations of all 96 measurements vs. each other. We therefore apply a thresholding to get a better sense of which columns are highly correlated. We applied a threshold of 0.6.
+
+<img src="../figures/thresholdcorrplot.png" width="300" height="300">
+
+Now we notice that the integrated brightness correlates across its features a lot. This could be due to the fact that brightness in 1 protein marker leaks over to another if they are close in space? This could allow us to condense f0, when performing cluster analysis and also motivates us to further analyze f0 because of its higher correlative properties relative to the other features. 
+
+Later, we also can use an independence test to determine if the features that are relatively more correlated are independent, or dependent. We would have to make use of downsampling to make this feasible.
+
+Next, we also look at the distribution of our synapses in space. 
+
+<img src="../figures/locationshist.png" width="300" height="300">
+
+We notice that on a first glance that our locations are uniformly distributed. However, we can test this assumption later.
+
+### Inferential Analysis
+Now, we wanted to determine the optimal number of clusters using a Gaussian Mixture Model. This assumes that our feature data is normally distributed, which may or may not be the case. We also wanted to test if our locations were indeed normally distributed.
+
+Running a Kolmogorov-Smirnov test for uniformity, we determined that none of the x,y,z locations were uniformly distributed.
+
+- x: KstestResult(statistic=0.08121982036477704, pvalue=0.0)
+- y: KstestResult(statistic=0.061234766392988749, pvalue=0.0)
+- z: KstestResult(statistic=0.070538814918980508, pvalue=0.0)
+
+We used a likelihood ratio test statistic to determine the optimal number of clusters for a GMM of our feature data. 
+
+<img src="../figures/gmmclusterresult.png" width="300" height="300">
+
+### Predictive Analysis
+We attempted to make regressions of one column of data from other columns of data. We fit several regressors and tested using LOO cross-validation with K folds. All MSE's were very small ~e-03, which could be due to overfitting by regressing on all 95 other columns.
+
+### Testing Assumptions
+Up to this point, our analysis has made two large assummptions about our data: our feature data was sampled independently and identially and if our data is sampled normally to allow for a GMM.
+
+<img src="../figures/multiscalecluster.png">
+
+<img src="../figures/normalitytest.png">
+
+Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. 
+
+In order to test for normality, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
