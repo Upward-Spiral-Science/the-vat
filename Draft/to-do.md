@@ -5,7 +5,7 @@
 
 
 # To do list
-1. Log-transform data [ ] []
+1. Log-transform data 
 2. Normalize data between 0 and 1 then log-transform
 3. Square-root transform
 4. Remove synapses corresponding to the bottom 25% synapsin values
