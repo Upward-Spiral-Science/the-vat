@@ -1,6 +1,7 @@
 # Questions:
 1. What is Pamk doing differnetly from kmeans?
 2. how they identify synapses for sure?
+3. What are the 'synapsin' values?
 
 
 # To do list
@@ -11,10 +12,10 @@
 5. Same as (4) at bottom 50%
 6. Same as (5) at bottom 75%
 7. BIC of k-means with only excitatory and inhibitory neurons
-8. Same as (7) using data from (1)
-9. Same as (7) using data from (2)
-10. Same as (7) using data from (3)
-11. Same as (7) using data from (1+4)
+8. Same as (7) using data from (1)       // testing on transformations
+9. Same as (7) using data from (2)       // transformations
+10. Same as (7) using data from (3)      // transformations
+11. Same as (7) using data from (1+4)    // transformations + filter out by synapsin value
 12. Same as (7) using data from (2+4)
 13. Same as (7) using data from (3+4)
 14. Same as (7) using data from (1+5)
@@ -23,13 +24,12 @@
 17. Same as (7) using data from (1+6)
 18. Same as (7) using data from (2+6)
 19. Same as (7) using data from (3+6)
-20. Kernel density estimates of raw data
+20. Kernel density estimates of raw data // kernel density estimation
 21. Kernel density estimates of (4)
 22. Kernel density estimates of (5)
 23. Kernel density estimates of (6)
-24. Detect outliers
+24. Detect outliers                     // use http://scikit-learn.org/stable/modules/outlier_detection.html
 
-    
 # Already Done:
 1. Raw, Log and Rank Transformations
 -> normalize and then Log transformations is the best initial transformation for transforming outliers
