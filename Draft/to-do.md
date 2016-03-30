@@ -29,29 +29,6 @@
 23. Kernel density estimates of (6)
 24. Detect outliers
 
-1. Take only excitatory and presynaptic and excitatory postsynaptic and inhibitory presynaptic and inhibitory postsynaptic
-    -> do they cluster into 2 groups?
-    
-3. Normalize between 0 and 1 and then log-transform
-    - subtract min and then divide by range
-4. Square-root transformation 
-    - to compress data 
-5. Remove all rows for a certain channel that is below a certain threshold
-    -> histograms of the 24 channels again
-    -> try clustering with k-means again
-    -> testing for normality
-    
-7. Rank transformation
-- pamk
-
-8. Z-scoring and then removing all rows +/- 3
-- ? ask jovo how to do multivariate ?
-
-9. ARI plots vs. channel types
-
-10. kernel density estimation of each channel before and after each preprocessing step of transformation, filtering
-
-
     
 # Already Done:
 1. Raw, Log and Rank Transformations
