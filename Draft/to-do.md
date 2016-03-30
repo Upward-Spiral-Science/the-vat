@@ -6,9 +6,7 @@
 # To do list
 1. Take only excitatory and presynaptic and excitatory postsynaptic and inhibitory presynaptic and inhibitory postsynaptic
     -> do they cluster into 2 groups?
-2. Filtering out rows of data that don't look like synapses
-- how 
-
+    
 3. Normalize between 0 and 1 and then log-transform
     - subtract min and then divide by range
 4. Square-root transformation 
@@ -24,7 +22,10 @@
 8. Z-scoring and then removing all rows +/- 3
 - ? ask jovo how to do multivariate ?
 
-9. 
+9. ARI plots vs. channel types
+
+10. kernel density estimation of each channel before and after each preprocessing step of transformation, filtering
+
 
     
 # Already Done:
