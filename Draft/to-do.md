@@ -18,8 +18,23 @@ At a very small number of inhibitory: ‘Vglut3’ (presynaptic), ‘CR1’(pres
 Other synapses:‘5HT1A’, ‘TH’, ‘VACht’,
 Not at synapses: ‘tubuli’, ‘DAPI’.
 
-# To do list
+
+# Questions:
 1. What is Pamk doing differnetly from kmeans?
-2. Take only excitatory and presynaptic and excitatory postsynaptic and inhibitory presynaptic and inhibitory postsynaptic
--> do they cluster into 2 groups?
-3. Filtering out rows of data that don't look like synapses
+2. how they identify synapses for sure?
+
+
+# To do list
+1. Take only excitatory and presynaptic and excitatory postsynaptic and inhibitory presynaptic and inhibitory postsynaptic
+    -> do they cluster into 2 groups?
+2. Filtering out rows of data that don't look like synapses
+- how 
+
+3. Normalize between 0 and 1 and then log-transform
+    - subtract min and then divide by range
+4. Square-root transformation 
+    - to compress data 
+5. Remove all rows for a certain channel that is below a certain threshold
+    -> histograms of the 24 channels again
+    -> try clustering with k-means again
+    -> testing for normality
