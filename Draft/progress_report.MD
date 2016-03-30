@@ -132,3 +132,6 @@ When performing any analysis that requires assumptions, it is wise to test the a
 We could also downsample and compute an independence test using RPy.
 
 The gaussian mixture model test for number of mixture components assumes, as the name suggests, that the data is a mixture of gaussians. Tests for normality of each mixture component is one way to determine if this assumption is violated. Q-Q plots of each mixture component also provides a visual indicator of deviance from normality.
+
+## Next Steps:
+
