@@ -18,9 +18,12 @@
     
 7. Rank transformation
 - pamk
+- compute BIC score as a function of k plot
 
 8. Z-scoring and then removing all rows +/- 3
 - ? ask jovo how to do multivariate ?
+- use scikit.learn outlier detection
+- look at distribution of outlier points and distributions of inlier points
 
 9. ARI plots vs. channel types
 
