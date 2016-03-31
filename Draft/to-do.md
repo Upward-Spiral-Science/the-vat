@@ -2,6 +2,7 @@
 1. What is Pamk doing differnetly from kmeans?
 2. how they identify synapses for sure?
 3. What are the 'synapsin' values?
+4. throw out outliers e.g. synapses that aren't synapses and get rid of dapuli and tubuluar?
 
 
 # To do list
