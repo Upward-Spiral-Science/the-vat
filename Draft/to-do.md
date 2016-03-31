@@ -1,9 +1,12 @@
 # Questions:
 1. What is Pamk doing differnetly from kmeans?
 2. how they identify synapses for sure?
+3. What are the 'synapsin' values?
+4. throw out outliers e.g. synapses that aren't synapses and get rid of dapuli and tubuluar?
 
 
 # To do list
+<<<<<<< HEAD
 1. Take only excitatory and presynaptic and excitatory postsynaptic and inhibitory presynaptic and inhibitory postsynaptic
     -> do they cluster into 2 groups?
     
@@ -31,6 +34,33 @@
 
 
     
+=======
+1. Log-transform data 
+2. Normalize data between 0 and 1 then log-transform
+3. Square-root transform
+4. Remove synapses corresponding to the bottom 25% synapsin values
+5. Same as (4) at bottom 50%
+6. Same as (5) at bottom 75%
+7. BIC of k-means with only excitatory and inhibitory neurons
+8. Same as (7) using data from (1)       // testing on transformations
+9. Same as (7) using data from (2)       // transformations
+10. Same as (7) using data from (3)      // transformations
+11. Same as (7) using data from (1+4)    // transformations + filter out by synapsin value
+12. Same as (7) using data from (2+4)
+13. Same as (7) using data from (3+4)
+14. Same as (7) using data from (1+5)
+15. Same as (7) using data from (2+5)
+16. Same as (7) using data from (3+5)
+17. Same as (7) using data from (1+6)
+18. Same as (7) using data from (2+6)
+19. Same as (7) using data from (3+6)
+20. Kernel density estimates of raw data // kernel density estimation
+21. Kernel density estimates of (4)
+22. Kernel density estimates of (5)
+23. Kernel density estimates of (6)
+24. Detect outliers                     // use http://scikit-learn.org/stable/modules/outlier_detection.html
+
+>>>>>>> 83d51d6bd79a7af98e19fc6a7c45d5ee496753e4
 # Already Done:
 1. Raw, Log and Rank Transformations
 -> normalize and then Log transformations is the best initial transformation for transforming outliers
