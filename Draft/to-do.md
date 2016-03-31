@@ -6,7 +6,6 @@
 
 
 # To do list
-<<<<<<< HEAD
 1. Take only excitatory and presynaptic and excitatory postsynaptic and inhibitory presynaptic and inhibitory postsynaptic
     -> do they cluster into 2 groups?
     
@@ -60,7 +59,7 @@
 23. Kernel density estimates of (6)
 24. Detect outliers                     // use http://scikit-learn.org/stable/modules/outlier_detection.html
 
->>>>>>> 83d51d6bd79a7af98e19fc6a7c45d5ee496753e4
+
 # Already Done:
 1. Raw, Log and Rank Transformations
 -> normalize and then Log transformations is the best initial transformation for transforming outliers
