@@ -36,7 +36,7 @@
 =======
 1. Log-transform data 
 2. Normalize data between 0 and 1 then log-transform
-3. Square-root transform
+3. Square-root transform and normalize 
 4. Remove synapses corresponding to the bottom 25% synapsin values
 5. Same as (4) at bottom 50%
 6. Same as (5) at bottom 75%
@@ -57,8 +57,14 @@
 21. Kernel density estimates of (4)
 22. Kernel density estimates of (5)
 23. Kernel density estimates of (6)
-24. Detect outliers                     // use http://scikit-learn.org/stable/modules/outlier_detection.html
+24. Detect outliers    
+- // use http://scikit-learn.org/stable/modules/outlier_detection.html
+25. Check linearity of data for synap, vglut1 
 
+1. [X]
+2. [X]
+3. [X]
+25. [X]
 
 # Already Done:
 1. Raw, Log and Rank Transformations
