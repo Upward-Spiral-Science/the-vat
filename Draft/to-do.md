@@ -68,6 +68,11 @@ ALI Updates:
 4. [X]
 5. [X]
 6. [X]
+7.
+8. [X]
+9. [X]
+10. [X]
+
 25. [X]
 
 # Already Done:
