@@ -44,13 +44,13 @@
 8. Same as (7) using data from (1)       // testing on transformations
 9. Same as (7) using data from (2)       // transformations
 10. Same as (7) using data from (3)      // transformations
-11. Same as (7) using data from (1+4)    // transformations + filter out by synapsin value
+11. Same as (7) using data from (1+4)    // transformations + filter out by synapsin value 25%
 12. Same as (7) using data from (2+4)
 13. Same as (7) using data from (3+4)
-14. Same as (7) using data from (1+5)
+14. Same as (7) using data from (1+5)    // transformations + filter out by synapsin value 50%
 15. Same as (7) using data from (2+5)
 16. Same as (7) using data from (3+5)
-17. Same as (7) using data from (1+6)
+17. Same as (7) using data from (1+6)    // transformations + filter out by synapsin value 75%
 18. Same as (7) using data from (2+6)
 19. Same as (7) using data from (3+6)
 20. Kernel density estimates of raw data // kernel density estimation
@@ -69,9 +69,10 @@ ALI Updates:
 5. [X]
 6. [X]
 7.
-8. [X]
+8. [X]  // BIC on transformations
 9. [X]
 10. [X]
+
 
 25. [X]
 
