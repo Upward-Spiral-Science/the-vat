@@ -20,61 +20,44 @@ We are working on synapse diversity within the brain with image data gathered fr
 [**``./draft/questions.md``**](./Draft/questions.md)
   > Asking the 6 types of scientific questions about my project topic
 
+# Tyler, should add links in here to his stuff ALL BELOW
+
 ####Assignment 3
-[**``./code/descriptive_and_exploratory_answers.ipynb``**](./code/descriptive_and_exploratory_answers.ipynb)
+[**``./code/descriptive_and_exploratory_answers.ipynb``**](./Code/exploratory_analysis_AL.ipynb)
   > Begin answering my descriptive and exploratory questions. Once I've answered them I will go back and revise the questions I asked - discuss those I couldn't fully answer, ask follow up questions that would be informative, etc.
 
-[**``./draft/revised_questions.md``**](./draft/revised_questions.md)
-  > Updated the questions based on our initial analysis
+
+
+[**``./draft/UpdatedToDo.md``**](./draft/to-do.md)
+  > Updated the questions based on our initial analysis - After Midterm presentation
 
 ###Assignment 4
-[**``./code/inferential_simulation.ipynb``**](./code/inferential_simulation.ipynb)
+[**``./code/inferential_simulation.ipynb``**](./Code/inferential_simulation_AL.ipynb)
   > Formally asked inferential question about my data, and answered it on simulated data from the null model, alternate model, and real data
+  
+
 
 ###Assignment 5
-[**``./code/classification_simulation.ipynb``**](./code/classification_simulation.ipynb)
+[**``./code/classification_simulation.ipynb``**](./Code/classificationANDregression_simulation_AL.ipynb)
   > Formally asked classification question about my data, and answered it on simulated data from the alternate model, and real data
 
 ###Assignment 6
-[**``./code/test_assumptions.ipynb``**](./code/test_assumptions.ipynb)
+[**``./code/test_assumptions.ipynb``**](./Code/testing_assumptions_AL.ipynb)
   > In the previous two assignments, we made assumptions about our data. Now, we will check them and see whether or not they are true, and if not, update our understanding or assumptions about our data to those which are *more* right.
 
 ###Assignment 7
-[**``./draft/summary_presentation.pdf``**](./draft/summary_presentation.pdf)
+[**``./draft/summary_presentation.pdf``**](./Draft/synapse_diversity_adam_tyler.pdf)
   > Presentation about findings and methods used throughout the project.
 
 ###Assignment 8
-[**``./docs/progress_report.md``**](./docs/progress_report.md)
+[**``./docs/progress_report.md``**](./Draft/progress_report.md)
   > Report stating all analysis completed to date, as well as logical next steps.
 
 ###Assignment 9
-[**``./code/extended_exploratory.ipynb``**](./code/extended_exploratory.ipynb)
-  > 10 more questions and plots about my data
+[**``./code/extended_exploratory.ipynb``**](./Code/newexploring/exploratory analysis.ipynb)
+  > 10 more questions and plots about my data. Shows a suite of BIC plots for transformed data and filtered data by synap values at 25, 50 and 75%. Did separately for f0, f1, f2, and f3 instead of all together.
 
 ###Assignment 10
-[**``./code/multiple_distributions.ipynb``**](./code/multiple_distributions.ipynb)
-  > Testing the same exploratory questions on sampled graphs from different distribution types
+[**``./code/multiple_distributions.ipynb``**](./Code/newexploring/clustering analysis.ipynb)
+  > Testing the clustering with a k of 4, 5, 6 on f0
 
-###Assignment 10
-[**``./code/extended_exploratory-on-new-datasets.ipynb``**](./code/extended_exploratory-on-new-datasets.ipynb)
-  > Evaluating same set of analyses on different datasets
-
-[**``./docs/distribution_properties.md``**](./docs/distribution_properties.md)
-  > Discuss analyses of each dataset, compare to known distributions
-
-###Assignment 11
-[**``./docs/classification_plan.md``**](./docs/classification_plan.md)
-  > Development of a plan for classifying brain graphs in a principled manner
-
-[**``./code/scree_plots.md``**](./code/scree_plots.md)
-  > Scree plot generating code for data
-
-[**``./figs/scree/``**](./figs/scree/)
-  > Scree plots for data
-
-###Assignment 12
-[**``./code/multipanel_scree_plots.md``**](./code/multipanel_scree_plots.md)
-  > Multipanel scree plots and code for 8 datasets on the Desikan atlas.
-
-[**``./figs/multipanel_scree_plots/``**](./figs/multipanel_scree_plots/)
-  > Multipanel scree plots for 8 datasets on the Desikan, CPAC200, and Talairach atlases.
