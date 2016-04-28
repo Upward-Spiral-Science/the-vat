@@ -20,7 +20,6 @@ We are working on synapse diversity within the brain with image data gathered fr
 [**``./draft/questions.md``**](./Draft/questions.md)
   > Asking the 6 types of scientific questions about my project topic
 
-# Tyler, should add links in here to his stuff ALL BELOW
 
 ####Assignment 3
 [**``./code/descriptive_and_exploratory_answers.ipynb``**](./Code/exploratory_analysis_AL.ipynb)
