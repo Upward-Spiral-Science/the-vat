@@ -24,6 +24,7 @@ We are working on synapse diversity within the brain with image data gathered fr
 
 ####Assignment 3
 [**``./code/descriptive_and_exploratory_answers.ipynb``**](./Code/exploratory_analysis_AL.ipynb)
+[**``./Code/Exploratory_analysis_tyler.ipynb``**](./Code/Exploratory_analysis_tyler.ipynb)
   > Begin answering my descriptive and exploratory questions. Once I've answered them I will go back and revise the questions I asked - discuss those I couldn't fully answer, ask follow up questions that would be informative, etc.
 
 
@@ -33,8 +34,9 @@ We are working on synapse diversity within the brain with image data gathered fr
 
 ###Assignment 4
 [**``./code/inferential_simulation.ipynb``**](./Code/inferential_simulation_AL.ipynb)
+[**``./Code/inference_tyler.ipynb``*](./Code/inference_tyler.ipynb)
   > Formally asked inferential question about my data, and answered it on simulated data from the null model, alternate model, and real data
-  
+
 
 
 ###Assignment 5
@@ -43,6 +45,7 @@ We are working on synapse diversity within the brain with image data gathered fr
 
 ###Assignment 6
 [**``./code/test_assumptions.ipynb``**](./Code/testing_assumptions_AL.ipynb)
+[**``./Code/assumption_checking_tyler.ipynb``**](./Code/assumption_checking_tyler.ipynb)
   > In the previous two assignments, we made assumptions about our data. Now, we will check them and see whether or not they are true, and if not, update our understanding or assumptions about our data to those which are *more* right.
 
 ###Assignment 7
@@ -55,6 +58,7 @@ We are working on synapse diversity within the brain with image data gathered fr
 
 ###Assignment 9
 [**``./code/extended_exploratory.ipynb``**](./Code/newexploring/exploratory analysis.ipynb)
+[**``./Code/exploratory_analysis2_tyler.ipynb``**](./Code/exploratory_analysis2_tyler.ipynb)
   > 10 more questions and plots about my data. Shows a suite of BIC plots for transformed data and filtered data by synap values at 25, 50 and 75%. Did separately for f0, f1, f2, and f3 instead of all together.
 
 ###Assignment 10
