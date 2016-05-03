@@ -245,13 +245,17 @@ The gaussian mixture model test for number of mixture components assumes, as the
 
 When analyzing high dimensional data with few samples, it is often very benficial to reduce the dimensions of the data. It is valuable to create scree-plots of the data to see how many dimensions your data can be effectively represented in. Here we showed scree plots across more datasets and three different scales of graphs (i.e. different numbers of nodes). It is interesting to note that across datasets the mean elbows are very consistent within a scale.
 
-Using PCA, we generated scree plots on the log-normalized data
+Using PCA, we generated scree plots on the log-normalized data on. It is noticable that we can reduce the dimensionality of the f0 feature matrix down to ~5 principle components to cover 90% of the variance in the integrated brightness features.
 
-<img src="./figures/exploratory/f0_lognormalized_screeplot.png" width="900" />
+<img src="./figures/exploratory/f0_lognormalized_screeplot.png" width="400" />
+<img src="./figures/exploratory/f0_lognormalized_bottom25_screeplot.png" width="400" />
+<img src="./figures/exploratory/f0_lognormalized_bottom50_screeplot.png" width="400" />
+<img src="./figures/exploratory/f0_lognormalized_bottom75_screeplot.png" width="400" />
 
-<img src="./figures/exploratory/f0_lognormalized_bottom25_screeplot.png" width="900" />
 
-<img src="./figures/exploratory/f0_lognormalized_bottom50_screeplot.png" width="900" />
+## Next Steps:
+- Clustering Analysis:
+Since doing the clustering analysis on the f0 features, it would be interesting to produce covariance matrices of all the metrics when clustering and also the clustered plots for f1, f2 and f3.
 
-<img src="./figures/exploratory/f0_lognormalized_bottom75_screeplot.png" width="900" />
+
 
