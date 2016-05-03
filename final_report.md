@@ -241,14 +241,17 @@ We could also downsample and compute an independence test using RPy.
 The gaussian mixture model test for number of mixture components assumes, as the name suggests, that the data is a mixture of gaussians. Tests for normality of each mixture component is one way to determine if this assumption is violated. Q-Q plots of each mixture component also provides a visual indicator of deviance from normality.    
 
 
-
 #### Dimensionality Reduction
 
 When analyzing high dimensional data with few samples, it is often very benficial to reduce the dimensions of the data. It is valuable to create scree-plots of the data to see how many dimensions your data can be effectively represented in. Here we showed scree plots across more datasets and three different scales of graphs (i.e. different numbers of nodes). It is interesting to note that across datasets the mean elbows are very consistent within a scale.
 
-<img src="./figs/multipanel_scree_plots/desikan.png" width="900" />
+Using PCA, we generated scree plots on the log-normalized data
 
-<img src="./figs/multipanel_scree_plots/desikan.png" width="900" />
+<img src="./figures/exploratory/f0_lognormalized_screeplot.png" width="900" />
 
-<img src="./figs/multipanel_scree_plots/desikan.png" width="900" />
+<img src="./figures/exploratory/f0_lognormalized_bottom25_screeplot.png" width="900" />
+
+<img src="./figures/exploratory/f0_lognormalized_bottom50_screeplot.png" width="900" />
+
+<img src="./figures/exploratory/f0_lognormalized_bottom75_screeplot.png" width="900" />
 
