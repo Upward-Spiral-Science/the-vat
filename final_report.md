@@ -55,7 +55,11 @@ The ranges on each axis are:
 ****** ADD ANY DESCRIPTIVE THINGS I DIDN'T ADD YET *********
 
 ### Exploratory Analysis
-In our exploratory analysis, we analyzed each metric separately first:
+Data checks to see if the two repeating Synap 01 and Synap 02 measurements were made correctly. If they were, then they should be linear.
+ <img src="./figures/exploratory/data_check01.png" width="300" height="300">
+ <img src="./figures/exploratory/data_check02.png" width="300" height="300">
+
+In our exploratory analysis, we also analyzed each metric separately first:
 - f0, f1, f2 and f3. 
 - filter out bottom 25, 50, 75% of synap values
 
@@ -80,105 +84,161 @@ Here, we performed various transformations and then correspondingly made Bayesia
     
     Then we decided to filter out the bottom 25, 50 and 75% of synap values (rows) and try on the log-normalized data again.
     
-    * SqrtNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 25% synap values.
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 25% synap values.
 
     <img src="./figures/exploratory/f0_lognormalized_bottom25_bicplot.png" width="300" height="300">
     
-    * SqrtNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 50% synap values.
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 50% synap values.
 
     <img src="./figures/exploratory/f0_lognormalized_bottom50_bicplot.png" width="300" height="300">
     
-    * SqrtNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 75% synap values.
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 75% synap values.
 
     <img src="./figures/exploratory/f0_lognormalized_bottom75_bicplot.png" width="300" height="300">
+
+2. f1 - local brightness
+ 
+    * LogNormalized-transformed data with BIC of up 16 clusters.
+
+    <img src="./figures/exploratory/f1_lognormalized_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 25% synap values.
+
+    <img src="./figures/exploratory/f1_lognormalized_bottom25_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 50% synap values.
+
+    <img src="./figures/exploratory/f1_lognormalized_bottom50_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 75% synap values.
+
+    <img src="./figures/exploratory/f1_lognormalized_bottom75_bicplot.png" width="300" height="300">
+
+3. f2 - Distance to Center of Mass
+ 
+    * LogNormalized-transformed data with BIC of up 16 clusters.
+
+    <img src="./figures/exploratory/f2_lognormalized_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 25% synap values.
+
+    <img src="./figures/exploratory/f2_lognormalized_bottom25_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 50% synap values.
+
+    <img src="./figures/exploratory/f2_lognormalized_bottom50_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 75% synap values.
+
+    <img src="./figures/exploratory/f2_lognormalized_bottom75_bicplot.png" width="300" height="300">
+
+4. f3 - Moment of Inertia Around Center of Mass
+ 
+    * LogNormalized-transformed data with BIC of up 16 clusters.
+
+    <img src="./figures/exploratory/f3_lognormalized_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 25% synap values.
+
+    <img src="./figures/exploratory/f3_lognormalized_bottom25_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 50% synap values.
+
+    <img src="./figures/exploratory/f3_lognormalized_bottom50_bicplot.png" width="300" height="300">
+    
+    * LogNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 75% synap values.
+
+    <img src="./figures/exploratory/f3_lognormalized_bottom75_bicplot.png" width="300" height="300">
+
+Discussion on BIC Plots: Generally, there seems to be an elbow at 4,5 or 6 clusters (visually). It would be interesting to determine how these clusters actually looked. Additional steps would be to cluster with a certain k, and look at the covariance matrix of the different clusters and plots of the various clusters.
+    
+Now, we also looked at the entire feature set as a whole.
+
+<img src="./figures/corrplot.png" width="300" height="300">
+
+We notice that there is some sort of trend within the correlations of all 96 measurements vs. each other. We therefore apply a thresholding to get a better sense of which columns are highly correlated. We applied a threshold of 0.6.
+
+<img src="./figures/thresholdcorrplot.png" width="300" height="300">
+
+Now we notice that the integrated brightness correlates across its features a lot. This could be due to the fact that brightness in 1 protein marker leaks over to another if they are close in space? This could allow us to condense f0, when performing cluster analysis and also motivates us to further analyze f0 because of its higher correlative properties relative to the other features. 
+
+Later, we also can use an independence test to determine if the features that are relatively more correlated are independent, or dependent. We would have to make use of downsampling to make this feasible.
+
+Next, we also look at the distribution of our synapses in space. 
+
+<img src="./figures/locationshist.png" width="300" height="300">
+
+We notice that on a first glance that our locations are uniformly distributed. However, we can test this assumption later.
     
 #### Inferential Analysis
-We now seek to understand class conditional differences within our datasets. From here, we will be only looking at the KKI2009 dataset. The covariate we are seeking to separate graphs based upon is sex. Firstly we must pick a feature of our graphs to test this difference under. As we'd looked at this feature in our exploratory analysis, we chose to use edge density as our feature. Running a wilcoxon test on this population, in which 22 subjects were male and 20 subjects were female, we found the following mean probabilities of edge based on class.
+Now, we wanted to determine the optimal number of clusters using a Gaussian Mixture Model. This assumes that our feature data is normally distributed, which may or may not be the case. We also wanted to test if our locations were indeed normally distributed.
 
-| Class | Mean edge probability |
-|-------|-----------------------|
-| Female| 0.014041836735        |
-| Male  | 0.013130376117        |
+Running a Kolmogorov-Smirnov test for uniformity, we determined that none of the x,y,z locations were uniformly distributed.
 
-We found that the difference between these populations was statistically significant with an alpha value of 0.05, produciing a p value of 0.022768743719. Since we found a statistically significant difference between classes, we can naturally proceed to trying to classify subjects based on their edge density.
+- x: KstestResult(statistic=0.08121982036477704, pvalue=0.0)
+- y: KstestResult(statistic=0.061234766392988749, pvalue=0.0)
+- z: KstestResult(statistic=0.070538814918980508, pvalue=0.0)
+
+We used a likelihood ratio test statistic to determine the optimal number of clusters for a GMM of our feature data. 
+
+<img src="./figures/gmmclusterresult.png" width="300" height="300">
 
 #### Predictive Analysis
-Now that a class conditional edge probability difference has been observed, we can attempt to explot this to classify subjects. Several types of classifiers were trained and tested using LOO cross-validation, and their results are tabulated below. Note that chance classification in this dataset is 47% accuracy, since the dataset has more males than females.
-
-| Classifier | Accuracy | Standard Deviation |
-|------------|----------|--------------------|
-|Nearest Neighbors | 0.48 | +/- 1.00 |
-|Linear SVM | 0.55 | +/- 1.00 |
-|Random Forest| 0.57 | +/- 0.99 |
-|Linear Discriminant Analysis| 0.45 | +/- 1.00 |
-|Quadratic Discriminant Analysis| 0.71 | +/- 0.90|
-
-Here we notice that with the only classifier which performs significantly better than chance is the Quadratic Discriminant Analysis. In order to gain some understanding as to why this is the case, we proceed to reevaluate our procedure thus far and test the assumptions we've been making up until this point.
+We attempted to make regressions of one column of data from other columns of data. We fit several regressors and tested using LOO cross-validation with K folds. All MSE's were very small ~e-03, which could be due to overfitting by regressing on all 95 other columns.
 
 #### Testing Assumptions
-Up to this point, our analysis had made two large assumptions about our data: the graphs are sampled idependently and identically, and edges within the graph were sampled independently and identically. Another assumption made implicitly when doing classification with QDA that differs from the other techniques is that our covariance matrix differs across classes. Here, we test each of these assumptions to see if we can impove our model.
+Up to this point, our analysis has made two large assummptions about our data: our feature data was sampled independently and identially and if our data is sampled normally to allow for a GMM.
 
-First, we test whether the graphs are sampled independently from each other and identically. Plotted below is the covariance matrix of our graphs. Significant content in the off-diagonal suggests that these graphs are in fact dependent. Below that, is a figure which plots the BIC score when doing GMM clustering on the graphs. We see that the optimal number of clusters is greater than 1, suggesting they are not identically distributed, either.
+<img src="./figures/multiscalecluster.png">
 
-<img src="./figs/graphs_covariance.png" data-canonical-src="./figs/graphs_covariance.png" width="300" />
-<img src="./figs/graphs_identical.png" data-canonical-src="./figs/graphs_identical.png" width="300" />
+<img src="./figures/normalitytest.png">
 
-Next, we investigate the same properties about our edges. Shown below are the same two figures for edges rather than graphs. We again notice lots of content in the off-diagonal of our covariance matrix, suggesting dependence between edges. Notice in the identical test, however, that a clear "optimal" number of clusters does exist whereas previously the plot seemed monotonically increasing. Here we notice an optimal clustering of 4, which can later be leveraged when doing clustering or classification.
+Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. 
 
-<img src="./figs/edges_covariance.png" data-canonical-src="./figs/edges_covariance.png" width="300" />
-<img src="./figs/edges_identical.png" data-canonical-src="./figs/edges_identical.png" width="300" />
+In order to test for normality, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
 
-Finally, we test whether or not the assumption made implicitly in QDA, that our classes have different covariance matrices, is true. Shown below is a plot of each of the class covariance matrices, as well as a plot of the absolute difference of this matrix. We can see a significant difference in this matrix, which suggests why QDA outperformed the other methods (certainly LDA, which explicitly assumes classes have an identical covariance matrix).
+Each of the questions required code and (for the inferential, predictive, and assumption checking portions) mathematical theory. This is all explained in detail in each file, tabulated below. Here, we will discuss the methods used in each of these sections, rationalize decision made, and discuss alternatives that could have been performed instead.
 
-<img src="./figs/class_covariance.png" data-canonical-src="./figs/class_covariance.png" width="500" />
+| Question Type | Code |
+|---------------|------|
+| Descriptive and Exploratory | [**``./exploratory_analysis_AL.ipynb``**](./Code/exploratory_analysis_AL.ipynb) |
+| Inferential | [**``./inferential_simulation_AL.ipynb``**](./Code/inferential_simulation_AL.ipynb) |
+| Predictive  | [**``./classificationANDregression_simulation_AL.ipynb``**](./Code/classificationANDregression_simulation_AL.ipynb) |
+| Testing Assumptions | [**``./testing_assumptions_AL.ipynb``**](./Code/testing_assumptions_AL.ipynb) |
+| Extended Exploration | [**``./Code/newexploring/exploratory_analysis.ipynb``**](./Code/newexploring/exploratory_analysis.ipynb) |
+| Clustering Analysis | [**``./Code/newexploring/clustering_analysis.ipynb``**](./Code/newexploring/clustering_analysis.ipynb) |
 
-#### Next Steps
-Thus far we have learned a fair amount about the edge densities and properties of our data. Moving forward, we can analyze the mean and covariance of the clusters found in our assumption checking, and cluster our data prior to testing hypotheses and classifying over covariates. We can also expand to regressing subject age, with several methods. Finally, once we are confident in and satisfied with a method testing on this dataset, we can expand towards testing the method on the MRN114 and SWU4 datasets, as well.
 
-#### Extended Exploratory Analysis
-Here we explored the data in much more detail than we had previously. We investigated properties such as: clusering coefficient, betweeneness centrality, vertex degree, number of non zero edges, eigen values, edge weights, number of 3-cliques, and scan statistics. These analyses were performed on the KKI2009, SWU4, and MRN114 datasets.
+# METHODS
+#### Descriptive Analysis
+When answering descriptive questions, we sought out values which could summarize the dataset. Our sample sizes, feature matrix sizes, and amount of obviously invalid data were chosen because they would be important in virtually any downstream task. More complicated features could have also been looked at, such as dynamic range of edge weights, or distribution of genders in each dataset as well.
 
-The clustering coefficient for the datasets is as is shown below. It can be seen that the KKI2009 dataset is quite consistent across subjects, while the other two datasets appear bimodal, and very closely resemble each other in terms of the portion of subjects belong to each mode.
+#### Exploratory Analysis
+Four exploratory questions were answered here: shape of features, range of locations, histograms of location distribution, and identification of clusters. The feature correlations were computed with a standard correlation computation. Then the plot had a threshold applied to binarize the low correlations.
 
-<img src="./figs/distribs/KKI2009-cc.png" width="280" />
-<img src="./figs/distribs/MRN114-cc.png" width="280" />
-<img src="./figs/distribs/SWU4-cc.png" width="280" />
+There was very limited computation or design when computing the histograms.
 
-The betweenness centrality is a metric which assesses the centrality of each node by counting the portion of shortest paths between all other nodes in the graphs it lies on.
+Clusters were fit using the scikit learn implementation of mini-batch k-means for various values of k, the number of clusters. The optimal model was chosen as the model that minimized BIC. 
 
-<img src="./figs/distribs/KKI2009-centrality.png" width="280" />
-<img src="./figs/distribs/MRN114-centrality.png" width="280" />
-<img src="./figs/distribs/SWU4-centrality.png" width="280" />
+#### Inferential Analysis
+The following figure is a simulation of the power of the KS-test with increasing n and the Wilcoxon Rank test.
 
-The degree sequence shows the distribution of degrees of nodes within the graphs. The MRN114 and SWU4 datasets appear more connected than the KKI2009 dataset, as the median is shifted to the right for these datasets.
+We also simulated the power of the likelihood ratio test statistic for gaussian mixture models. 
 
-<img src="./figs/distribs/KKI2009-degree.png" width="280" />
-<img src="./figs/distribs/MRN114-degree.png" width="280" />
-<img src="./figs/distribs/SWU4-degree.png" width="280" />
+<img src="./figures/powersim.png">
+<img src="./figures/powersimgmm.png">
 
-The number of non zeros in a graph counts the unweighted edges. In these graphs, there are 70 nodes, so the maximum number of edges is 2415.
+#### Predictive Analysis
+This simulated the accuracy of our regressors with increasing n. 
 
-<img src="./figs/distribs/KKI2009-nnz.png" width="580" />
-<img src="./figs/distribs/MRN114-nnz.png" width="580" />
-<img src="./figs/distribs/SWU4-nnz.png" width="580" />
+<img src="./figures/regressionsim.png">
 
-As these are weighted graphs, the distribution of edge weights is also of interest. We see most edges are very small weights, which suggests most connections observed in the graph are not "strong" from a robust standpoint (i.e. only few fibers connect the regions, rather than many).
+#### Testing Assumptions
+When performing any analysis that requires assumptions, it is wise to test the assumptions made. We made three types of assumptions here: samples are independent, samples are identical, and there exists a gaussian mixture model. For testing independence, we chose to look at linear dependence. We computed the covariance matrix across all samples. If a significant portion of the covariance matrix lay in the off diagonal, we could say that the samples were not linearly independent.
 
-<img src="./figs/distribs/KKI2009-edgeweight.png" width="280" />
-<img src="./figs/distribs/MRN114-edgeweight.png" width="280" />
-<img src="./figs/distribs/SWU4-edgeweight.png" width="280" />
+We could also downsample and compute an independence test using RPy.
 
-The scan statistic-1 counts the number of edges within a local neighbourhood.
-
-<img src="./figs/distribs/KKI2009-ss1.png" width="280" />
-<img src="./figs/distribs/MRN114-ss1.png" width="280" />
-<img src="./figs/distribs/SWU4-ss1.png" width="280" />
-
-The eigen values of the system were the last feature we looked at of the graphs, and are seen below.
-
-<img src="./figs/distribs/KKI2009-eigen.png" width="280" />
-<img src="./figs/distribs/MRN114-eigen.png" width="280" />
-<img src="./figs/distribs/SWU4-eigen.png" width="280" />
+The gaussian mixture model test for number of mixture components assumes, as the name suggests, that the data is a mixture of gaussians. Tests for normality of each mixture component is one way to determine if this assumption is violated. Q-Q plots of each mixture component also provides a visual indicator of deviance from normality.    
 
 
 
@@ -192,51 +252,3 @@ When analyzing high dimensional data with few samples, it is often very benficia
 
 <img src="./figs/multipanel_scree_plots/desikan.png" width="900" />
 
-### Methods
-Each of the questions required code and (for the inferential, predictive, and assumption checking portions) mathematical theory. This is all explained in detail in each file, tabulated below. Here, we will discuss the methods used in each of these sections, rationalize decision made, and discuss alternatives that could have been performed instead.
-
-| Question Type | Code |
-|---------------|------|
-| Descriptive | [**``./code/descriptive_and_exploratory_answers.ipynb``**](./code/descriptive_and_exploratory_answers.ipynb) |
-| Exploratory | [**``./code/descriptive_and_exploratory_answers.ipynb``**](./code/descriptive_and_exploratory_answers.ipynb) |
-| Inferential | [**``./code/inferential_simulation.ipynb``**](./code/inferential_simulation.ipynb) |
-| Predictive  | [**``./code/classification_simulation.ipynb``**](./code/classification_simulation.ipynb) |
-| Testing Assumptions | [**``./code/test_assumptions.ipynb``**](./code/test_assumptions.ipynb) |
-| Extended Exploratory | [**``code/extended_exploratory.ipynb``**](code/extended_exploratory.ipynb),  [**``./code/extended_exploratory-on-new-datasets.ipynb``**](./code/extended_exploratory-on-new-datasets.ipynb) |
-| Sample Distributions | [**``./code/multiple_distributions.ipynb``**](./code/multiple_distributions.ipynb) |
-| Dimensionality Reduction | [**``./code/scree_plots.md``**](./code/scree_plots.md), [**``./code/multipanel_scree_plots.md``**](./code/multipanel_scree_plots.md) |
-
-#### Descriptive Analysis
-When answering descriptive questions, we sought out values which could summarize the dataset. Our sample sizes, graph size, and amount of obviously invalid data were chosen because they would be important in virtually any downstream task. More complicated features could have also been looked at, such as dynamic range of edge weights, or distribution of genders in each dataset as well.
-
-#### Exploratory Analysis
-Three exploratory questions were answered here: average degree, average graph, and plotting the histograms of edge weight. The average degree for each graph was computed by summing the binary edge count for each graph and dividing by the number of nodes. The graphs were binarized, but not thresholded or scaled before to remove small magnitude edges. This means that the estimated degree is an upper bound estimate based on these graphs.
-
-The mean connectome was computed simply here due to the graphs being graph matched (i.e. same nodes). The edge-weight for each location was simply averaged across all graphs. We did not do this, but perhaps should (and certainly could) for each individual dataset as well, to see if population specific mean connectomes are significantly different from one another.
-
-There was very limited computation or design when computing the histograms.
-
-#### Inferential Analysis
-Here we needed to define a model and test statistic for our hypothesis test. We wanted to test whether or not males and females are sampled from the same distribution, so we chose a test statistic that is a function of distribution: edge probability. We could have fit a GMM or other distribution to our data and then compared them, but as a preliminary measure this enabled us to proceed easily. We also needed to choose a statistical text. We choose the Wilcoxon test because it is a non-parametric test that makes significantly fewer assumptions about the data (i.e. doesn't impose a distribution) than the t-test. In order to prove that our test in fact convered to 1 in power as the number of samples approached infinity under the alternate model (that a class conditional probability exists), and would stay at our alpha value under the null model (no relationship exists), we simulated data that have similar properties to our graphs. Shown below is a figure illustrating that this test converges as desired.
-
-<img src="./figs/wilcoxon_classification.png" data-canonical-src="./figs/wilcoxon_classification.png" width="450" />
-
-#### Predictive Analysis
-Similarly to the inferential analysis, we needed to here specify a model and loss function for our classification task. The model again used edge probability as the feature. Here the loss function was simply the indicator function over assigned label by the classifer compared to true label - if the labels were the same, there was no loss; otherwise, the loss was 1. Here we tested 5 different classifiers on the data and compared their performance. Some of the tests were non-parametric (LDA, QDA), while others were parametric (K-nearest neighbour, Linear SVM, and Random Forest). The parameters chosen for each of these algorithms was not at all tuned to our data, but were the default parameters suggested by the sklearn website, where the implementations were found. Improving this, and choosing parameters that match our assumptions or expectations about our data could drastically improve the performance of these classifiers.
-
-Shown below is a figure illustrating the performance of each of these classifiers tested on simulated data that is sampled from a distribution similar to our observed data.
-
-<img src="./figs/general_classification.png" data-canonical-src="./figs/general_classification.png" width="700" />
-
-#### Testing Assumptions
-When performing any analysis that requires assumptions, it is wise to test the assumptions made. We made three types of assumptions here: samples are independent, samples are identical, and there exists a class conditional covariance matrix (i.e. classes have different covariances). For testing independence, we chose to look at linear dependence. We computed the covariance matrix across all samples (first this meant graphs were samples, then samples were edges within the graphs), and looked at what portion of this lay in the off diagonal. If a significant portion of the covariance matrix lay in the off diagonal, we could say that the samples were not linearly independent.
-
-For testing whether or not samples were identically distributed, we attempted to cluster the data using a Gaussian Mixture Model while varying the number of clusters. We ran Bayesian Information Criterion (BIC) on all of the clusterings and plotted the curve of BIC values over varying dimension. Where BIC is maximized, we have found the optimal number of clusters for this data (using this clustering method). Therefore, if the ideal number of clusters is 1, we can feel confident that our data may be identically distributed. However, when the optimal BIC is at a higher number, or monotonically increasing, it suggests that our data are not identically distributed.
-
-The final test, which asserts a class conditional covariance, was perhaps the most obvious to test. We computed the covariance of all the data in each class, and then took the difference of the two class covariance matrices. We found that the covariance matrices were very different, which lead us to believe that this assumption was in fact correct.
-
-#### Extended Exploratory Analysis
-The library Networkx contains lots of pre-built functions for computing invariants on graphs. Those computed here were all packaged as a part of Networkx, so custom scripts were only written to wrap the management of this processing across graphs and datasets.
-
-#### Dimensionality Reduction
-Scree plots show the singular values of the Singular Value Decomposition of a matrix. We took the adjacency matrix of our graphs, and performed the SVD on them. The elbows were found using code provided by Youngser Park, an implementation of the Zhu Ghodsi method published in 2006.
