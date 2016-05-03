@@ -55,7 +55,11 @@ The ranges on each axis are:
 ****** ADD ANY DESCRIPTIVE THINGS I DIDN'T ADD YET *********
 
 ### Exploratory Analysis
-In our exploratory analysis, we analyzed each metric separately first, f0, f1, f2 and f3. Here, we performed various transformations and then correspondingly made Bayesian Information Criterion (BIC) plots, to determine some optimal clustering k.
+In our exploratory analysis, we analyzed each metric separately first:
+- f0, f1, f2 and f3. 
+- filter out bottom 25, 50, 75% of synap values
+
+Here, we performed various transformations and then correspondingly made Bayesian Information Criterion (BIC) plots, to determine some optimal clustering k.
 
 1. f0 - Integrated Brightness
     * Log-transformed data with BIC of up 16 clusters.
@@ -73,6 +77,21 @@ In our exploratory analysis, we analyzed each metric separately first, f0, f1, f
     * SqrtNormalized-transformed data with BIC of up 16 clusters.
 
     <img src="./figures/exploratory/f0_sqrtnormalized_bicplot.png" width="300" height="300">
+    
+    Then we decided to filter out the bottom 25, 50 and 75% of synap values (rows) and try on the log-normalized data again.
+    
+    * SqrtNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 25% synap values.
+
+    <img src="./figures/exploratory/f0_lognormalized_bottom25_bicplot.png" width="300" height="300">
+    
+    * SqrtNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 50% synap values.
+
+    <img src="./figures/exploratory/f0_lognormalized_bottom50_bicplot.png" width="300" height="300">
+    
+    * SqrtNormalized-transformed data with BIC of up 16 clusters; filtered out bottom 75% synap values.
+
+    <img src="./figures/exploratory/f0_lognormalized_bottom75_bicplot.png" width="300" height="300">
+    
 #### Inferential Analysis
 We now seek to understand class conditional differences within our datasets. From here, we will be only looking at the KKI2009 dataset. The covariate we are seeking to separate graphs based upon is sex. Firstly we must pick a feature of our graphs to test this difference under. As we'd looked at this feature in our exploratory analysis, we chose to use edge density as our feature. Running a wilcoxon test on this population, in which 22 subjects were male and 20 subjects were female, we found the following mean probabilities of edge based on class.
 
