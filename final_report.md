@@ -1,5 +1,5 @@
 ### Human Connectome Discovery
-***Greg Kiar*** <br/>
+***Adam Li and Tyler tomita*** <br/>
 May 1, 2016
 
 -------
@@ -59,16 +59,16 @@ In our exploratory analysis, we analyzed each metric separately first, f0, f1, f
 
 1. f0 - Integrated Brightness
 * Log-transformed data with BIC of up 16 clusters.
-    <img src="../../figures/exploratory/f0_log_bicplot.png" width="300" height="300">
+    <img src="../figures/exploratory/f0_log_bicplot.png" width="300" height="300">
 
 * LogNormalized-transformed data with BIC of up 16 clusters.
-    <img src="../../figures/exploratory/f0_lognormalized_bicplot.png" width="300" height="300">
+    <img src="../figures/exploratory/f0_lognormalized_bicplot.png" width="300" height="300">
 
 * Sqrt-transformed data with BIC of up 16 clusters.
-    <img src="../../figures/exploratory/f0_sqrt_bicplot.png" width="300" height="300">
+    <img src="../figures/exploratory/f0_sqrt_bicplot.png" width="300" height="300">
 
 * SqrtNormalized-transformed data with BIC of up 16 clusters.
-    <img src="../../figures/exploratory/f0_sqrtnormalized_bicplot.png" width="300" height="300">
+    <img src="../figures/exploratory/f0_sqrtnormalized_bicplot.png" width="300" height="300">
 #### Inferential Analysis
 We now seek to understand class conditional differences within our datasets. From here, we will be only looking at the KKI2009 dataset. The covariate we are seeking to separate graphs based upon is sex. Firstly we must pick a feature of our graphs to test this difference under. As we'd looked at this feature in our exploratory analysis, we chose to use edge density as our feature. Running a wilcoxon test on this population, in which 22 subjects were male and 20 subjects were female, we found the following mean probabilities of edge based on class.
 
