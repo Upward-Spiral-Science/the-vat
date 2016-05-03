@@ -44,7 +44,24 @@ The ranges on each axis are:
 - y: [23, 12980]
 - z: [2, 40]
 
+****** ADD ANY DESCRIPTIVE THINGS I DIDN'T ADD YET *********
+
 ### Exploratory Analysis
+In our exploratory analysis, we analyzed each metric separately first, f0, f1, f2 and f3. Here, we performed various transformations and then correspondingly made Bayesian Information Criterion (BIC) plots, to determine some optimal clustering k.
+
+1. f0 - Integrated Brightness
+* Log-transformed data with BIC of up 16 clusters.
+    <img src="../../figures/exploratory/f0_log_bicplot.png" width="300" height="300">
+
+* LogNormalized-transformed data with BIC of up 16 clusters.
+    <img src="../../figures/exploratory/f0_lognormalized_bicplot.png" width="300" height="300">
+
+* Sqrt-transformed data with BIC of up 16 clusters.
+    <img src="../../figures/exploratory/f0_sqrt_bicplot.png" width="300" height="300">
+
+* SqrtNormalized-transformed data with BIC of up 16 clusters.
+    <img src="../../figures/exploratory/f0_sqrtnormalized_bicplot.png" width="300" height="300">
+
 First we looked at our feature data.
 
 <img src="../figures/corrplot.png" width="300" height="300">
