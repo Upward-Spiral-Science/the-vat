@@ -32,20 +32,32 @@ Currently, very little is understood about the synaptic connections within our b
 Here we discuss our analysis of the data.
 
 ### Descriptive Analysis
-Our data is a organized into a feature matrix and a location matrix. Our feature matrix is (1119299, 144), but we trim it down to (1119299, 96). Each 24 columns represent one measurement metric/channel of data. 
+Our data is a organized into a feature matrix and a location matrix. Our feature matrix is 1119299 x 144, but we trim it down to 1119299 x 96. Each of the 24 columns represent one channel of data. 
 
 The measurement metrics are:
     f0 = integrated brightness 
     f1 = local brightness 
     f2 = distance to Center of Mass 
     f3 = moment of inertia around synapse
-each with a shape of (1119299, 24).
+each with a shape of 1119299 x 24.
 
-Each channel/measurement has 24 data points representing 4 different protein markers, ordered as the following: 
+Each measurement metric has 24 channels representing different protein markers, ordered as the following:
 
-['Synap', 'Synap', 'VGlut1', 'VGlut1', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
+['Synap0', 'Synap1', 'VGlut11', 'VGlut12', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
 
-The location data is (1119299, 3). They represent pixel locations on a 3D image with resolution at the nm scale. 
+The data collectors have provided domain knowledge regarding groupings of the 24 protein markers. Each marker belongs to one of seven functional groupings. The breakdown is as follows:
+
+| Functional Category | Markers |
+|---------------|------|
+| Excitatory Presynaptic | Synap0, Synap1, VGlut11, VGlut12, VGlut2 |
+| Excitatory Postsynaptic | psd, glur2, nmdar1, nr2b, NOS, Synapo |
+| Inhibitory Presynaptic | [gad, VGAT, PV |
+| Inhibitory Postsynaptic  | Gephyr, GABAR1, GABABR |
+| Inhibitory Presynaptic (small)  | Vglut3, CR1 |
+| Other | 5HT1A, TH, VACht |
+| None | tubulin, DAPI |
+
+The location data is a 1119299 x 3 matrix. They represent pixel locations on a 3D image with resolution at the nm scale. 
 
 The ranges on each axis are:
 - x: [28, 1513]
