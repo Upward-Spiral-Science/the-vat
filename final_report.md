@@ -254,8 +254,13 @@ Using PCA, we generated scree plots on the log-normalized data on. It is noticab
 
 
 ## Next Steps:
-- Clustering Analysis:
-Since doing the clustering analysis on the f0 features, it would be interesting to produce covariance matrices of all the metrics when clustering and also the clustered plots for f1, f2 and f3.
+Clustering Analysis:
+- Since doing the clustering analysis on the f0 features, it would be interesting to produce covariance matrices of all the metrics when clustering and also the clustered plots for f1, f2 and f3.
+- Using other clustering algorithms on k=2 to compare for distributions of protein expression values. We can try k-medoids, random forest, svm, ward clustering 
+- Another option would be to create an affinity matrix of a random subset of the rows of the features by having it connected with synapses close in space
+    - then we can also apply spectral clustering
+    
+- Can try all these things with PCA reducing the number of principle components to 8/9 to account for ~99% of the variance. 
 
 
 
