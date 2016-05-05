@@ -43,13 +43,13 @@ each with a shape of 1119299 x 24.
 
 Each measurement metric has 24 channels representing different protein markers, ordered as the following:
 
-['Synap0', 'Synap1', 'VGlut11', 'VGlut12', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
+['Synap_0', 'Synap_1', 'VGlut1_0', 'VGlut1_1', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
 
 The data collectors have provided domain knowledge regarding groupings of the 24 protein markers. Each marker belongs to one of seven functional groupings. The breakdown is as follows:
 
 | Functional Category | Markers |
 |---------------|------|
-| Excitatory Presynaptic | Synap0, Synap1, VGlut11, VGlut12, VGlut2 |
+| Excitatory Presynaptic | Synap_0, Synap_1, VGlut1_0, VGlut1_1, VGlut2 |
 | Excitatory Postsynaptic | psd, glur2, nmdar1, nr2b, NOS, Synapo |
 | Inhibitory Presynaptic | [gad, VGAT, PV |
 | Inhibitory Postsynaptic  | Gephyr, GABAR1, GABABR |
@@ -64,10 +64,8 @@ The ranges on each axis are:
 - y: [23, 12980]
 - z: [2, 40]
 
-****** ADD ANY DESCRIPTIVE THINGS I DIDN'T ADD YET *********
-
 ### Exploratory Analysis
-Data checks to see if the two repeating Synap 01 and Synap 02 measurements were made correctly. If they were, then they should be linear.
+Data checks to see if the two repeating measurements (Synap_0 and Synap_1) were made correctly. If they were, then they should be linear.
  <img src="./figures/exploratory/data_check01.png" width="300" height="300">
  <img src="./figures/exploratory/data_check02.png" width="300" height="300">
 
