@@ -51,7 +51,7 @@ The data collectors have provided domain knowledge regarding groupings of the 24
 |---------------|------|
 | Excitatory Presynaptic | Synap_0, Synap_1, VGlut1_0, VGlut1_1, VGlut2 |
 | Excitatory Postsynaptic | psd, glur2, nmdar1, nr2b, NOS, Synapo |
-| Inhibitory Presynaptic | [gad, VGAT, PV |
+| Inhibitory Presynaptic | gad, VGAT, PV |
 | Inhibitory Postsynaptic  | Gephyr, GABAR1, GABABR |
 | Inhibitory Presynaptic (small)  | Vglut3, CR1 |
 | Other | 5HT1A, TH, VACht |
