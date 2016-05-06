@@ -75,16 +75,23 @@ Next, we utilized various exploratory tools to try to understand the data better
 
 f0 seemed to be the most informative metric, so most of the analyses were focused around this metric. Since the scales of each channel for f0 seemed to vary widely, we applied various transformations, including log, 0-1 normalization then log, square root, and 0-1 normalization then square root. For log transformations, we had to add one because of the zeros in the original data. For each transformation, we plotted kernel density estimates. Plots are color-coded according to functional category. Unfortunately, the histrograms could not be well visualized on a single set of axes because of the large variance in scale, hence the individual subplots.
 
+* Untransformed f0
 <img src="./figures/exploratory/f0_kde.png" width="750" height="750">
 <br />
 <br />
-
+* log f0
 <img src="./figures/exploratory/f0_log_kde.png" width="750" height="750">
-
+<br />
+<br />
+* log normalized f0
 <img src="./figures/exploratory/f0_lognormalized_kde.png" width="750" height="750">
-
+<br />
+<br />
+sqrt f0
 <img src="./figures/exploratory/f0_sqrt_kde.png" width="750" height="750">
-
+<br />
+<br />
+sqrt normalized f0
 <img src="./figures/exploratory/f0_sqrtnormalized_kde.png" width="750" height="750">
 
 Many of the untransformed channels have heavy right or left tails, and the scales vary widely. Both square root and log transformations seem to help make the data more Gaussian, and also make the channels more commensurate. Having commensurate data is crucial to some of the procedures that follow.
