@@ -223,11 +223,11 @@ Each of the questions required code and (for the inferential, predictive, and as
 
 | Question Type | Code |
 |---------------|------|
-| Descriptive and Exploratory | [**``./exploratory_analysis_AL.ipynb``**](./Code/exploratory_analysis_AL.ipynb) |
+| Descriptive and Exploratory | [**``./exploratory_analysis_AL.ipynb``**](./Code/exploratory_analysis_AL.ipynb), [**``./Exploratory_analysis_tyler.ipynb``**](./Code/Exploratory_analysis_tyler.ipynb) |
 | Inferential | [**``./inferential_simulation_AL.ipynb``**](./Code/inferential_simulation_AL.ipynb) |
 | Predictive  | [**``./classificationANDregression_simulation_AL.ipynb``**](./Code/classificationANDregression_simulation_AL.ipynb) |
 | Testing Assumptions | [**``./testing_assumptions_AL.ipynb``**](./Code/testing_assumptions_AL.ipynb) |
-| Extended Exploration | [**``./Code/newexploring/exploratory_analysis.ipynb``**](./Code/newexploring/exploratory_analysis.ipynb) |
+| Extended Exploration | [**``./Code/newexploring/exploratory_analysis.ipynb``**](./Code/newexploring/exploratory_analysis.ipynb), [**``./exploratory_analysis_tyler2.ipynb``**](./Code/exploratory_analysis_tyler2.ipynb) |
 | Clustering Analysis | [**``./Code/newexploring/clustering_analysis.ipynb``**](./Code/newexploring/clustering_analysis.ipynb) |
 
 
