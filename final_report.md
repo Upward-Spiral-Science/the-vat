@@ -76,6 +76,8 @@ Next, we utilized various exploratory tools to try to understand the data better
 f0 seemed to be the most informative metric, so most of the analyses were focused around this metric. Since the scales of each channel for f0 seemed to vary widely, we applied various transformations, including log, 0-1 normalization then log, square root, and 0-1 normalization then square root. For log transformations, we had to add one because of the zeros in the original data. For each transformation, we plotted kernel density estimates. Plots are color-coded according to functional category. Unfortunately, the histrograms could not be well visualized on a single set of axes because of the large variance in scale, hence the individual subplots.
 
 <img src="./figures/exploratory/f0_kde.png" width="750" height="750">
+<br />
+<br />
 
 <img src="./figures/exploratory/f0_log_kde.png" width="750" height="750">
 
