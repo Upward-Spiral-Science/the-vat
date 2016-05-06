@@ -97,15 +97,15 @@ Many of the untransformed channels have heavy right or left tails, and the scale
 
 Additionally, we wanted to see how channels correlated with each other. For each transformation, we computed the correlation matrix for f0:
 
-<img src="./figures/exploratory/f0_correlation.png" width="500" height="500">
+<img src="./figures/exploratory/f0_correlation.png" width="800" height="800">
 
-<img src="./figures/exploratory/f0_log_correlation.png" width="500" height="500">
+<img src="./figures/exploratory/f0_log_correlation.png" width="800" height="800">
 
-<img src="./figures/exploratory/f0_lognormalized_correlation.png" width="500" height="500">
+<img src="./figures/exploratory/f0_lognormalized_correlation.png" width="800" height="800">
 
-<img src="./figures/exploratory/f0_sqrt_correlation.png" width="500" height="500">
+<img src="./figures/exploratory/f0_sqrt_correlation.png" width="800" height="800">
 
-<img src="./figures/exploratory/f0_sqrtnormalized_correlation.png" width="500" height="500">
+<img src="./figures/exploratory/f0_sqrtnormalized_correlation.png" width="800" height="800">
 
 Pairwise Peason's correlation seems to be largely unaffected by the type of transformation. We see correlations that we would hope to see. For instance, psd and glur2, which are both excitatory postsynaptic types, have a correlation of ~.93. However, we also see correlations that we wouldn't expect, such as a correlation of ~.83 for gad (inhibitory presynaptic) and glur2 (excitatory postsynaptic).
 
