@@ -43,13 +43,13 @@ each with a shape of 1119299 x 24.
 
 Each measurement metric has 24 channels representing different protein markers, ordered as the following:
 
-['Synap0', 'Synap1', 'VGlut11', 'VGlut12', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
+['Synap_0', 'Synap_1', 'VGlut1_0', 'VGlut1_1', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
 
 The data collectors have provided domain knowledge regarding groupings of the 24 protein markers. Each marker belongs to one of seven functional groupings. The breakdown is as follows:
 
 | Functional Category | Markers |
 |---------------|------|
-| Excitatory Presynaptic | Synap0, Synap1, VGlut11, VGlut12, VGlut2 |
+| Excitatory Presynaptic | Synap_0, Synap_1, VGlut1_0, VGlut1_1, VGlut2 |
 | Excitatory Postsynaptic | psd, glur2, nmdar1, nr2b, NOS, Synapo |
 | Inhibitory Presynaptic | [gad, VGAT, PV |
 | Inhibitory Postsynaptic  | Gephyr, GABAR1, GABABR |
@@ -64,16 +64,27 @@ The ranges on each axis are:
 - y: [23, 12980]
 - z: [2, 40]
 
-****** ADD ANY DESCRIPTIVE THINGS I DIDN'T ADD YET *********
-
 ### Exploratory Analysis
-Data checks to see if the two repeating Synap 01 and Synap 02 measurements were made correctly. If they were, then they should be linear.
+As a first quality control step, we checked to see if the two repeating measurements (Synap_0 and Synap_1) were taken correctly. If they were, then they should be linearly correlated.
  <img src="./figures/exploratory/data_check01.png" width="300" height="300">
  <img src="./figures/exploratory/data_check02.png" width="300" height="300">
 
-In our exploratory analysis, we also analyzed each metric separately first:
+Next, we utilized various exploratory tools to try to understand the data better. First, we analyzed each metric separately:
 - f0, f1, f2 and f3. 
 - filter out bottom 25, 50, 75% of synap values
+
+f0 seemed to be the most informative metric, so most of the analyses were focused around this metric. Since the scales of each channel for f0 seemed to vary widely, we applied various transformations, including log, 0-1 normalization then log, square root, and 0-1 normalization then square root. For log transformations, we had to add one because of the zeros in the original data. For each transformation, we plotted kernel density estimates. Plots are color-coded according to functional category. Unfortunately, the histrograms could not be well visualized on a single set of axes because of the large variance in scale, hence the individual subplots.
+
+* Untransformed Integrated Brightness
+<img src="./figures/exploratory/f0_correlation.png" width="500" height="500">
+* log(Integrated Brightness)
+<img src="./figures/exploratory/f0_log_correlation.png" width="500" height="500">
+* log(Normalized Integrated Brigtness)
+<img src="./figures/exploratory/f0_lognormalized_correlation.png" width="500" height="500">
+* sqrt(Integrated Brightness)
+<img src="./figures/exploratory/f0_sqrt_correlation.png" width="500" height="500">
+* sqrt(Normalized Integrated Brightness)
+<img src="./figures/exploratory/f0_sqrtnormalized_correlation.png" width="500" height="500">
 
 Here, we performed various transformations and then correspondingly made Bayesian Information Criterion (BIC) plots, to determine some optimal clustering k.
 
