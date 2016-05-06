@@ -75,6 +75,20 @@ Next, we utilized various exploratory tools to try to understand the data better
 
 f0 seemed to be the most informative metric, so most of the analyses were focused around this metric. Since the scales of each channel for f0 seemed to vary widely, we applied various transformations, including log, 0-1 normalization then log, square root, and 0-1 normalization then square root. For log transformations, we had to add one because of the zeros in the original data. For each transformation, we plotted kernel density estimates. Plots are color-coded according to functional category. Unfortunately, the histrograms could not be well visualized on a single set of axes because of the large variance in scale, hence the individual subplots.
 
+<img src="./figures/exploratory/f0_kde.png" width="500" height="500">
+
+<img src="./figures/exploratory/f0_log_kde.png" width="500" height="500">
+
+<img src="./figures/exploratory/f0_lognormalized_kde.png" width="500" height="500">
+
+<img src="./figures/exploratory/f0_sqrt_kde.png" width="500" height="500">
+
+<img src="./figures/exploratory/f0_sqrtnormalized_kde.png" width="500" height="500">
+
+Many of the untransformed channels have heavy right or left tails, and the scales vary widely. Both square root and log transformations seem to help make the data more Gaussian, and also make the channels more commensurate. Having commensurate data is crucial to some of the procedures that follow.
+
+Additionally, we wanted to see how channels correlated with each other. For each transformation, we computed the correlation matrix for f0:
+
 <img src="./figures/exploratory/f0_correlation.png" width="500" height="500">
 
 <img src="./figures/exploratory/f0_log_correlation.png" width="500" height="500">
@@ -84,6 +98,8 @@ f0 seemed to be the most informative metric, so most of the analyses were focuse
 <img src="./figures/exploratory/f0_sqrt_correlation.png" width="500" height="500">
 
 <img src="./figures/exploratory/f0_sqrtnormalized_correlation.png" width="500" height="500">
+
+Pairwise Peason's correlation seems to be largely unaffected by the type of transformation. We see correlations that we would hope to see. For instance, psd and glur2, which are both excitatory postsynaptic types, have a correlation of ~.93. However, we also see correlations that we wouldn't expect, such as a correlation of ~.83 for gad (inhibitory presynaptic) and glur2 (excitatory postsynaptic).
 
 Here, we performed various transformations and then correspondingly made Bayesian Information Criterion (BIC) plots, to determine some optimal clustering k.
 
@@ -201,7 +217,7 @@ Running a Kolmogorov-Smirnov test for uniformity, we determined that none of the
 - y: KstestResult(statistic=0.061234766392988749, pvalue=0.0)
 - z: KstestResult(statistic=0.070538814918980508, pvalue=0.0)
 
-We used a likelihood ratio test statistic to determine the optimal number of clusters for a GMM of our feature data. 
+We used a likelihood ratio test statistic to test for the number of clusters in a GMM of our feature data. The null hypothesis was that there is one mixture component, while the alternative was that there is 17. The result of the test indicated a p-value close to zero, meaning that we can strongly reject the null in favor of the alternative.
 
 <img src="./figures/gmmclusterresult.png" width="300" height="300">
 
@@ -215,9 +231,9 @@ Up to this point, our analysis has made two large assummptions about our data: o
 
 <img src="./figures/normalitytest.png">
 
-Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. 
+Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. 
 
-In order to test for normality, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
+We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. In order to test for independence, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
 
 Each of the questions required code and (for the inferential, predictive, and assumption checking portions) mathematical theory. This is all explained in detail in each file, tabulated below. Here, we will discuss the methods used in each of these sections, rationalize decision made, and discuss alternatives that could have been performed instead.
 
