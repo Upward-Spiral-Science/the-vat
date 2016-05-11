@@ -32,36 +32,82 @@ Currently, very little is understood about the synaptic connections within our b
 Here we discuss our analysis of the data.
 
 ### Descriptive Analysis
-Our data is a organized into a feature matrix and a location matrix. Our feature matrix is (1119299, 144), but we trim it down to (1119299, 96). Each 24 columns represent one measurement metric/channel of data. 
+Our data is a organized into a feature matrix and a location matrix. Our feature matrix is 1119299 x 144, but we trim it down to 1119299 x 96. Each of the 24 columns represent one channel of data. 
 
 The measurement metrics are:
     f0 = integrated brightness 
     f1 = local brightness 
     f2 = distance to Center of Mass 
     f3 = moment of inertia around synapse
-each with a shape of (1119299, 24).
+each with a shape of 1119299 x 24.
 
-Each channel/measurement has 24 data points representing 4 different protein markers, ordered as the following: 
+Each measurement metric has 24 channels representing different protein markers, ordered as the following:
 
-['Synap', 'Synap', 'VGlut1', 'VGlut1', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
+['Synap_0', 'Synap_1', 'VGlut1_0', 'VGlut1_1', 'VGlut2', 'Vglut3', 'psd', 'glur2', 'nmdar1', 'nr2b', 'gad', 'VGAT', 'PV', 'Gephyr', 'GABAR1', 'GABABR', 'CR1', '5HT1A', 'NOS', 'TH', 'VACht', 'Synapo', 'tubuli', 'DAPI']
 
-The location data is (1119299, 3). They represent pixel locations on a 3D image with resolution at the nm scale. 
+The data collectors have provided domain knowledge regarding groupings of the 24 protein markers. Each marker belongs to one of seven functional groupings. The breakdown is as follows:
+
+| Functional Category | Markers |
+|---------------|------|
+| Excitatory Presynaptic | Synap_0, Synap_1, VGlut1_0, VGlut1_1, VGlut2 |
+| Excitatory Postsynaptic | psd, glur2, nmdar1, nr2b, NOS, Synapo |
+| Inhibitory Presynaptic | gad, VGAT, PV |
+| Inhibitory Postsynaptic  | Gephyr, GABAR1, GABABR |
+| Inhibitory Presynaptic (small)  | Vglut3, CR1 |
+| Other | 5HT1A, TH, VACht |
+| None | tubulin, DAPI |
+
+The location data is a 1119299 x 3 matrix. They represent pixel locations on a 3D image with resolution at the nm scale. 
 
 The ranges on each axis are:
 - x: [28, 1513]
 - y: [23, 12980]
 - z: [2, 40]
 
-****** ADD ANY DESCRIPTIVE THINGS I DIDN'T ADD YET *********
-
 ### Exploratory Analysis
-Data checks to see if the two repeating Synap 01 and Synap 02 measurements were made correctly. If they were, then they should be linear.
+As a first quality control step, we checked to see if the two repeating measurements (Synap_0 and Synap_1) were taken correctly. If they were, then they should be linearly correlated.
  <img src="./figures/exploratory/data_check01.png" width="300" height="300">
  <img src="./figures/exploratory/data_check02.png" width="300" height="300">
 
-In our exploratory analysis, we also analyzed each metric separately first:
+Next, we utilized various exploratory tools to try to understand the data better. First, we analyzed each metric separately:
 - f0, f1, f2 and f3. 
 - filter out bottom 25, 50, 75% of synap values
+
+f0 seemed to be the most informative metric, so most of the analyses were focused around this metric. Since the scales of each channel for f0 seemed to vary widely, we applied various transformations, including log, 0-1 normalization then log, square root, and 0-1 normalization then square root. For log transformations, we had to add one because of the zeros in the original data. For each transformation, we plotted kernel density estimates. Plots are color-coded according to functional category. Unfortunately, the histrograms could not be well visualized on a single set of axes because of the large variance in scale, hence the individual subplots.
+
+<img src="./figures/exploratory/f0_kde.png" width="800" height="800">
+<br />
+<br />
+<br />
+<img src="./figures/exploratory/f0_log_kde.png" width="800" height="800">
+<br />
+<br />
+<br />
+<img src="./figures/exploratory/f0_lognormalized_kde.png" width="800" height="800">
+<br />
+<br />
+<br />
+<img src="./figures/exploratory/f0_sqrt_kde.png" width="800" height="800">
+<br />
+<br />
+<br />
+<img src="./figures/exploratory/f0_sqrtnormalized_kde.png" width="800" height="800">
+
+Many of the untransformed channels have heavy right or left tails, and the scales vary widely. Both square root and log transformations seem to help make the data more Gaussian, and also make the channels more commensurate. Having commensurate data is crucial to some of the procedures that follow.
+
+Additionally, we wanted to see how channels correlated with each other. For each transformation, we computed the correlation matrix for f0:
+
+<img src="./figures/exploratory/f0_correlation.png" width="800" height="800">
+
+<img src="./figures/exploratory/f0_log_correlation.png" width="800" height="800">
+
+<img src="./figures/exploratory/f0_lognormalized_correlation.png" width="800" height="800">
+
+<img src="./figures/exploratory/f0_sqrt_correlation.png" width="800" height="800">
+
+<img src="./figures/exploratory/f0_sqrtnormalized_correlation.png" width="800" height="800">
+
+Pairwise Peason's correlation seems to be largely unaffected by the type of transformation. We see correlations that we would hope to see. For instance, psd and glur2, which are both excitatory postsynaptic types, have a correlation of ~.93. However, we also see correlations that we wouldn't expect, such as a correlation of ~.83 for gad (inhibitory presynaptic) and glur2 (excitatory postsynaptic).
 
 Here, we performed various transformations and then correspondingly made Bayesian Information Criterion (BIC) plots, to determine some optimal clustering k.
 
@@ -179,7 +225,7 @@ Running a Kolmogorov-Smirnov test for uniformity, we determined that none of the
 - y: KstestResult(statistic=0.061234766392988749, pvalue=0.0)
 - z: KstestResult(statistic=0.070538814918980508, pvalue=0.0)
 
-We used a likelihood ratio test statistic to determine the optimal number of clusters for a GMM of our feature data. 
+We used a likelihood ratio test statistic to test for the number of clusters in a GMM of our feature data. The null hypothesis was that there is one mixture component, while the alternative was that there is 17. The result of the test indicated a p-value close to zero, meaning that we can strongly reject the null in favor of the alternative.
 
 <img src="./figures/gmmclusterresult.png" width="300" height="300">
 
@@ -193,19 +239,19 @@ Up to this point, our analysis has made two large assummptions about our data: o
 
 <img src="./figures/normalitytest.png">
 
-Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. 
+Using a multiscale clustering method with K-Means of 2 each time, we found 16 centroids and looked at the distances between each centroid. Theoretically these should be all relatively distanced from each other if 17 is the optimal # of clusters. However, we do see some block diagonality, which suggests otherwise. 
 
-In order to test for normality, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
+We used a Henze-Zirkler test for multivariate normality, which shows that our data is indeed not normally distributed. In order to test for independence, we used the energy package from R, but it would not scale well suggesting that we need to downsample our data and try again.
 
 Each of the questions required code and (for the inferential, predictive, and assumption checking portions) mathematical theory. This is all explained in detail in each file, tabulated below. Here, we will discuss the methods used in each of these sections, rationalize decision made, and discuss alternatives that could have been performed instead.
 
 | Question Type | Code |
 |---------------|------|
-| Descriptive and Exploratory | [**``./exploratory_analysis_AL.ipynb``**](./Code/exploratory_analysis_AL.ipynb) |
-| Inferential | [**``./inferential_simulation_AL.ipynb``**](./Code/inferential_simulation_AL.ipynb) |
+| Descriptive and Exploratory | [**``./exploratory_analysis_AL.ipynb``**](./Code/exploratory_analysis_AL.ipynb), [**``./Exploratory_analysis_tyler.ipynb``**](./Code/Exploratory_analysis_tyler.ipynb) |
+| Inferential | [**``./inferential_simulation_AL.ipynb``**](./Code/inferential_simulation_AL.ipynb), [**``./inference_tyler.ipynb``**](./Code/inference_tyler.ipynb) |
 | Predictive  | [**``./classificationANDregression_simulation_AL.ipynb``**](./Code/classificationANDregression_simulation_AL.ipynb) |
-| Testing Assumptions | [**``./testing_assumptions_AL.ipynb``**](./Code/testing_assumptions_AL.ipynb) |
-| Extended Exploration | [**``./Code/newexploring/exploratory_analysis.ipynb``**](./Code/newexploring/exploratory_analysis.ipynb) |
+| Testing Assumptions | [**``./testing_assumptions_AL.ipynb``**](./Code/testing_assumptions_AL.ipynb), [**``./assumption_checking_tyler.ipynb``**](./Code/assumption_checking_tyler.ipynb) |
+| Extended Exploration | [**``./Code/newexploring/exploratory_analysis.ipynb``**](./Code/newexploring/exploratory_analysis.ipynb), [**``./exploratory_analysis_tyler2.ipynb``**](./Code/exploratory_analysis_tyler2.ipynb) |
 | Clustering Analysis | [**``./Code/newexploring/clustering_analysis.ipynb``**](./Code/newexploring/clustering_analysis.ipynb) |
 
 
