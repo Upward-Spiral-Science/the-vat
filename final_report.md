@@ -212,7 +212,7 @@ Later, we also can use an independence test to determine if the features that ar
 
 Next, we also look at the distribution of our synapses in space. 
 
-<img src="./figures/locationshist.png" width="300" height="300">
+<img src="./figures/locationshist.png" width="400" height="600">
 
 We notice that on a first glance that our locations are uniformly distributed. However, we can test this assumption later.
     
