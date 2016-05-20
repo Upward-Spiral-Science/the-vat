@@ -1,0 +1,56 @@
+\begin{thebibliography}{1}
+
+\bibitem{Micheva2007}
+Kristina~D. Micheva and Stephen~J. Smith.
+\newblock {Array Tomography: A New Tool for Imaging the Molecular Architecture
+  and Ultrastructure of Neural Circuits}.
+\newblock {\em Neuron}, 55(1):25--36, 2007.
+
+\bibitem{Fallis2013}
+Moore~A. {Pelleg D.}
+\newblock {X-means: Extending K-means with Efficient Estimation of the Number
+  of Clusters}.
+\newblock {\em Journal of Chemical Information and Modeling}, 53(9):1689--1699,
+  2013.
+
+\bibitem{Sculley2010}
+D~Sculley.
+\newblock {Web-scale k-means clustering}.
+\newblock {\em Proceedings of the 19th international conference on World wide
+  web WWW 10}, page 1177, 2010.
+
+\bibitem{Usoskin2014a}
+Dmitry Usoskin, Alessandro Furlan, Saiful Islam, Hind Abdo, Peter
+  L{\"{o}}nnerberg, Daohua Lou, Jens Hjerling-leffler, Jesper Haeggstr{\"{o}}m,
+  Olga Kharchenko, Peter~V Kharchenko, Sten Linnarsson, and Patrik Ernfors.
+\newblock {Unbiased classification of sensory neuron types by large-scale
+  single-cell RNA sequencing}.
+\newblock {\em Nature Publishing Group}, 18(1):145--153, 2014.
+
+\bibitem{Weiler2014}
+Nicholas~C Weiler, Forrest Collman, Joshua~T Vogelstein, Randal Burns, and
+  Stephen~J Smith.
+\newblock {Synaptic molecular imaging in spared and deprived columns of mouse
+  barrel cortex with array tomography}.
+\newblock pages 1--20, 2014.
+
+\bibitem{Wheeler2015}
+Diek~W Wheeler, Charise~M White, Christopher~L Rees, Alexander~O Komendantov,
+  David~J Hamilton, and Giorgio~A Ascoli.
+\newblock {Hippocampome . org : a knowledge base of neuron types in the rodent
+  hippocampus}.
+\newblock pages 1--28, 2015.
+
+\bibitem{Wold1987}
+Svante Wold, Kim Esbensen, and Paul Geladi.
+\newblock {Principal component analysis}.
+\newblock {\em Chemometrics and Intelligent Laboratory Systems}, 2(1-3):37--52,
+  1987.
+
+\bibitem{You}
+Chong You, Chun-guang~Li Daniel, and P~Robinson Ren.
+\newblock {Oracle Based Active Set Algorithm for Scalable Elastic Net Subspace
+  Clustering}.
+\newblock 2016.
+
+\end{thebibliography}
