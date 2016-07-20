@@ -7,8 +7,8 @@
 % to avoid loading the natbib package, add option nonatbib:
 % \usepackage[nonatbib]{nips_2016}
 
-% \usepackage{nips_2016}
-\usepackage[final]{nips_2016}
+\usepackage{nips_2016}
+% \usepackage[final]{nips_2016}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -106,11 +106,13 @@ When we implemented a PCA on our 1119299 x 24 feature matrix, we found that only
 
 \section{Discussion}
 \label{discussion}
-We have shown an initial analysis of the protein expression data at synapses identified using ATomo. Overall, we have shown evidence that there are indeed more then just an excitatory and inhibitory clustering of synapses. We have seen that integrated brightness is highly correlative with itself relative to the other metrics involved (local brightness, distance to center of mass and moment of inertia around synapse). By focusing our analysis on integrated brightness, we saw that an approximate optimal number of clusters was 4.
+We have shown an initial analysis of the protein expression data at synapses identified using ATomo. Overall, we have shown evidence that there are indeed more then just an excitatory and inhibitory clustering of synapses. We have seen that integrated brightness is highly correlative with itself relative to the other metrics involved (local brightness, distance to center of mass and moment of inertia around synapse). By focusing our analysis on integrated brightness, we saw that an approximate optimal number of clustering on protein integrated brightness expression was 4.
 
 When we tested that initial assumption by plotting pairwise distance plots of the centroids, we saw that they were relatively distanced against each other. In addition, when reducing the dimensionality of the protein channels, we saw that ~4, or 5 principle components accounted for 90\% of the data variance. If the synapse populations are characterized by integrated brightness variance in protein expression, then this would also support our inclination that our dataset captures at least 4 unique clusters. Reducing the dimensions down to 12 would only leave <1\% of variance unaccounted for, while increasing the interpretability of the data.
 
-In upcoming work, we would like to 1. validate our clustering scheme and how the distribution of protein expression looks within each cluster and 2. test different subclustering algorithms. By validating our clustering scheme, we can determine if there is a clustering of just excitatory and inhibitory synapses first. This would mean most of the proteins expressed in excitatory are in one cluster, and vice versa. We can also try various subspace clustering algorithms that utilize l1 and l2 regularizations for sparsity and smoothness \cite{You}. This showed a computationally efficient way of subspace clustering using elastic net and can be easily implemented.
+By analyzing the variance structure within the synapses and using a statistical approach to determining optimal number of clusters within the dataset, we are able to provide initial evidence towards a richer subpopulation of synapses. 
+
+In upcoming work, we would like to test different subclustering algorithms. We can try various subspace clustering algorithms that utilize l1 and l2 regularizations for sparsity and smoothness \cite{You}. This showed a computationally efficient way of subspace clustering using elastic net and can be easily implemented. This is a logical step because we have seen that our parameter space can already be reduced by PCA. This will simply allow us to control how sparse our feature space will be for clustering synapses. In addition, we would like to further analyze the distribution of synapses in the image volume. Since synapses are physically connected, it would be logical to hypothesize that synapses closer in space are more likely to be part of the same cluster.
 
 
 \newpage
